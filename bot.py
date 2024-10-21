@@ -1,5 +1,5 @@
 from aiohttp import web
-from web_server import web_server
+from handlers.web_server import web_server
 import os
 import asyncio
 import traceback
