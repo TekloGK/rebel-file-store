@@ -58,10 +58,16 @@ class Bot(Client):
        me = await self.get_me()
        runner = web.AppRunner(await web_server())
        await runner.setup()
-       await web.TCPSite(runner, "0.0.0.0", 8100).start()
-       logger.info(f"@{me.username} Started ✅")
+       await web.TCPSite(runner, "0.0.0.0", 8101).start()
+       try:
+            await self.send_message(6805001741), f"**__{me.first_name} Iꜱ Sᴛᴀʀᴛᴇᴅ.....__**")
+       except Exception:
+            LOGGER.error("Boot Alert Failed! Please Start Bot In PM")
 
-bot = Bot()
+    async def stop(self, *args):
+        await super().stop()
+        LOGGER.info("Bot Stopped Bye 👋")logger.info(f"@{me.username} Started ✅")
+
        
 @Bot.on_message(filters.private)
 async def _(bot: Client, cmd: Message):
@@ -434,4 +440,7 @@ async def button(bot: Client, cmd: CallbackQuery):
     try:
         await cmd.answer()
     except QueryIdInvalid: pass
+
+
+bot = Bot()
 
