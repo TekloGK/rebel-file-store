@@ -10,9 +10,9 @@ bot_loop = asyncio.get_event_loop()
 def main_func():
     async def start_services():
       try:
-		 await bot.start() 
+          await bot.start() 
       except:
-         logger.error('error', exc_info=True)
+          logger.error('error', exc_info=True)
          
     bot_loop.run_until_complete(start_services())
     bot_loop.run_forever()
