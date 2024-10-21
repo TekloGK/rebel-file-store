@@ -66,7 +66,8 @@ class Bot(Client):
 
    async def stop(self, *args):
         await super().stop()
-        logger.info("Bot Stopped Bye 👋")logger.info(f"@{me.username} Started ✅")
+        logger.info("Bot Stopped Bye 👋")
+        logger.info(f"@{me.username} Started ✅")
 
        
 @Bot.on_message(filters.private)
