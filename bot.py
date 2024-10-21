@@ -62,11 +62,11 @@ class Bot(Client):
        try:
             await self.send_message(6805001741, f"**__{me.first_name} Iꜱ Sᴛᴀʀᴛᴇᴅ.....__**")
        except Exception:
-            LOGGER.error("Boot Alert Failed! Please Start Bot In PM")
+            logger.error("Boot Alert Failed! Please Start Bot In PM")
 
-    async def stop(self, *args):
+   async def stop(self, *args):
         await super().stop()
-        LOGGER.info("Bot Stopped Bye 👋")logger.info(f"@{me.username} Started ✅")
+        logger.info("Bot Stopped Bye 👋")logger.info(f"@{me.username} Started ✅")
 
        
 @Bot.on_message(filters.private)
