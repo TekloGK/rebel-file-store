@@ -60,6 +60,8 @@ class Bot(Client):
        await runner.setup()
        await web.TCPSite(runner, "0.0.0.0", 8000).start()
        logger.info(f"@{me.username} Started ✅")
+
+bot = Bot()
        
 @Bot.on_message(filters.private)
 async def _(bot: Client, cmd: Message):
@@ -433,6 +435,3 @@ async def button(bot: Client, cmd: CallbackQuery):
         await cmd.answer()
     except QueryIdInvalid: pass
 
-
-Bot.run()
-logger.info('Bot Started...😎')
