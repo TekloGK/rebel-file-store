@@ -58,7 +58,7 @@ class Bot(Client):
        me = await self.get_me()
        runner = web.AppRunner(await web_server())
        await runner.setup()
-       await web.TCPSite(runner, "0.0.0.0", 8000).start()
+       await web.TCPSite(runner, "0.0.0.0", 8100).start()
        logger.info(f"@{me.username} Started ✅")
 
 bot = Bot()
