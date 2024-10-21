@@ -4,7 +4,7 @@ import os
 class Config(object):
 	API_ID = int(os.environ.get("API_ID", 26162072))
 	API_HASH = os.environ.get("API_HASH", "ba25181c01b50d945748801b6c8b6ecc")
-	BOT_TOKEN = os.environ.get("BOT_TOKEN", "7909023072:AAHcQ2k1ZubhzQFTFo-twxHy754oKCOh0XE")
+	BOT_TOKEN = os.environ.get("BOT_TOKEN", "7592385900:AAFgJNcvLd8N5YAOxsptc066UFyxyBJviG8")
 	BOT_USERNAME = os.environ.get("BOT_USERNAME", "Filmone_FileStore_Bot")
 	DB_CHANNEL = int(os.environ.get("DB_CHANNEL", -1002430476193))
 	SHORTLINK_URL = os.environ.get('SHORTLINK_URL', 'linkshortx.in')
