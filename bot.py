@@ -1,4 +1,5 @@
-
+from aiohttp import web
+from web_server import web_server
 import os
 import asyncio
 import traceback
@@ -43,15 +44,23 @@ pyroutils.MIN_CHAT_ID = -999999999999
 pyroutils.MIN_CHANNEL_ID = -100999999999999
 MediaList = {}
 
-Bot = Client(
-    name=Config.BOT_USERNAME,
-    in_memory=True,
-    bot_token=Config.BOT_TOKEN,
-    api_id=Config.API_ID,
-    api_hash=Config.API_HASH
-)
-
-
+class Bot(Client):
+   def __init__(self):
+       super().__init__(
+           name=Config.BOT_USERNAME,
+           bot_token=Config.BOT_TOKEN,
+           api_id=Config.API_ID,
+           api_hash=Config.API_HASH,
+           in_memory=True)
+       
+   async def start(self):
+       await super().start()
+       me = await self.get_me()
+       runner = web.AppRunner(await web_server())
+       await runner.setup()
+       await web.TCPSite(runner, "0.0.0.0", 8000).start()
+       logger.info(f"@{me.username} Started ✅")
+       
 @Bot.on_message(filters.private)
 async def _(bot: Client, cmd: Message):
     await handle_user_status(bot, cmd)
