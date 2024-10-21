@@ -60,7 +60,7 @@ class Bot(Client):
        await runner.setup()
        await web.TCPSite(runner, "0.0.0.0", 8101).start()
        try:
-            await self.send_message(6805001741), f"**__{me.first_name} Iꜱ Sᴛᴀʀᴛᴇᴅ.....__**")
+            await self.send_message(6805001741, f"**__{me.first_name} Iꜱ Sᴛᴀʀᴛᴇᴅ.....__**")
        except Exception:
             LOGGER.error("Boot Alert Failed! Please Start Bot In PM")
 
