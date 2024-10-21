@@ -1,7 +1,5 @@
-from aiohttp import web
-from handlers.web_server import web_server
+
 import os
-from random import randint
 import asyncio
 import traceback
 from binascii import (
@@ -45,32 +43,15 @@ pyroutils.MIN_CHAT_ID = -999999999999
 pyroutils.MIN_CHANNEL_ID = -100999999999999
 MediaList = {}
 
-class Bot(Client):
-   def __init__(self):
-       super().__init__(
-           name=Config.BOT_USERNAME,
-           bot_token=Config.BOT_TOKEN,
-           api_id=Config.API_ID,
-           api_hash=Config.API_HASH,
-           in_memory=True)
-       
-   async def start(self):
-       await super().start()
-       me = await self.get_me()
-       runner = web.AppRunner(await web_server())
-       await runner.setup()
-       await web.TCPSite(runner, "0.0.0.0", randint(1111,9999)).start()
-       try:
-            await self.send_message(6805001741, f"**__{me.first_name} Iꜱ Sᴛᴀʀᴛᴇᴅ.....__**")
-       except Exception:
-            logger.error("Boot Alert Failed! Please Start Bot In PM")
+Bot = Client(
+    name=Config.BOT_USERNAME,
+    in_memory=True,
+    bot_token=Config.BOT_TOKEN,
+    api_id=Config.API_ID,
+    api_hash=Config.API_HASH
+)
 
-   async def stop(self, *args):
-        await super().stop()
-        logger.info("Bot Stopped Bye 👋")
-        logger.info(f"@{me.username} Started ✅")
 
-       
 @Bot.on_message(filters.private)
 async def _(bot: Client, cmd: Message):
     await handle_user_status(bot, cmd)
@@ -163,7 +144,7 @@ async def main(bot: Client, message: Message):
         try:
             forwarded_msg = await message.forward(Config.DB_CHANNEL)
             file_er_id = str(forwarded_msg.id)
-            share_link = f"https://t.me/{Config.BOT_USERNAME}?start=PredatorHackerzZ_{str_to_b64(file_er_id)}"
+            share_link = f"https://t.me/{Config.BOT_USERNAME}?start=GKBotz_{str_to_b64(file_er_id)}"
             CH_edit = await bot.edit_message_reply_markup(message.chat.id, message.id,
                                                           reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(
                                                               "Get Sharable Link", url=share_link)]]))
@@ -444,5 +425,5 @@ async def button(bot: Client, cmd: CallbackQuery):
     except QueryIdInvalid: pass
 
 
-bot = Bot()
-
+Bot.run()
+logger.info('Bot Started...😎')
