@@ -10,7 +10,9 @@ bot_loop = asyncio.get_event_loop()
 def main_func():
     async def start_services():
         global bot, bot_loop
-        await bot.start() 
+        try:
+           await bot.start() 
+         
           
     bot_loop.run_until_complete(start_services())
     bot_loop.run_forever()
