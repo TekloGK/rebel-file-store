@@ -1,7 +1,7 @@
 import asyncio
 import warnings
 from bot import bot
-from handler import logger
+from handlers import logger
 import time
 
 
