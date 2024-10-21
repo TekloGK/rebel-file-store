@@ -1,0 +1,8 @@
+Pyrofork
+TgCrypto
+motor
+aiofiles
+dnspython
+psutil
+render
+requests
